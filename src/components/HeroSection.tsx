@@ -1,7 +1,5 @@
 import React from "react";
-import Image, { StaticImageData } from "next/image";
 import { Button } from "./ui/button";
-import profileImage from "../images/profile.png";
 
 import {
   ArrowDown,
@@ -17,7 +15,7 @@ interface HeroSectionProps {
   name?: string;
   title?: string;
   description?: string;
-  imageUrl?: string | StaticImageData;
+  imageUrl?: string;
   resumeUrl?: string;
 }
 
@@ -25,7 +23,7 @@ const HeroSection = ({
   name = "Carls Escalo",
   title = "Web Developer",
   description = "Passionate about creating beautiful, responsive, and user-friendly web applications with modern technologies.",
-  imageUrl = profileImage,
+  imageUrl = "/images/profile.png", // Direct path to the public directory
   resumeUrl = "#",
 }: HeroSectionProps) => {
   return (
@@ -108,14 +106,13 @@ const HeroSection = ({
           {/* Right content - Profile Image */}
           <div className="flex-1 flex justify-center md:justify-end">
             <div className="relative">
+              {/* Gradient background effect */}
               <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary to-primary/50 blur-md opacity-70 animate-pulse"></div>
-              <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-background shadow-xl">
-                <Image
-                  src={imageUrl}
+              <div className="relative h-[300px] w-[300px] sm:h-[400px] sm:w-[400px] lg:h-[450px] lg:w-[450px] overflow-hidden rounded-full border-4 border-background shadow-xl">
+                <img
+                  src={imageUrl} // Using the image URL directly
                   alt={name}
-                  fill
-                  className="object-cover"
-                  priority
+                  className="object-cover w-full h-full"
                 />
               </div>
             </div>

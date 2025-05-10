@@ -1,219 +1,228 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Plus, LogIn } from "lucide-react";
-import TaskBoard from "@/components/TaskBoard";
-import Dashboard from "@/components/Dashboard";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Link from "next/link";
+"use client";
+import React, { useState, useEffect } from "react";
+import { Card, CardContent } from "../components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Badge } from "../components/ui/badge";
+import { AspectRatio } from "../components/ui/aspect-ratio";
+import Dashboard from "@/components/taskmanagement/app/page";
+import Image from "next/image";
 
-export default function Home() {
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  technologies: string[];
+  demoUrl?: string;
+  sourceUrl?: string;
+  detailedDescription?: string;
+  challenges?: string;
+  isDeployed?: boolean;
+}
+
+export default function ProjectsSection() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const projects: Project[] = [
+    {
+      id: "1",
+      title: "Citimax Group of Companies",
+      description: "A responsive website developed for Citimax",
+      category: "Web Apps",
+      image: "/images/citimax.png",
+      technologies: ["Go daddy", "Go daddy website builder"],
+      demoUrl: "https://citimax.ph",
+      sourceUrl: "",
+      detailedDescription: "Citimax.ph is a corporate web site for showcasing industrial products. Built with responsiveness and SEO in mind, the site features product and service listings, a blog, and a contact form.",
+      challenges: "Buying a domain and hosting, setting up professional email and using GoDaddy's website builder to create a responsive site.",
+      isDeployed: true
+    },
+    {
+      id: "2",
+      title: "Task Management App",
+      description: "A collaborative task management application with real-time updates",
+      category: "Web Apps",
+      image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&q=80",
+      technologies: ["NextJS", "Firebase", "Tailwind CSS"],
+      demoUrl: "https://example.com/taskapp",
+      sourceUrl: "https://github.com/carlescalo/taskapp",
+      detailedDescription: "A task management application for teams with real-time collaboration features.",
+      challenges: "Implementing real-time synchronization across multiple clients.",
+      isDeployed: false
+    },
+  ];
+
+  const categories = ["All", "Web Apps", "Mobile", "UI/UX"];
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects = activeCategory === "All"
+    ? projects
+    : projects.filter((project) => project.category === activeCategory);
+
+  const openProjectModal = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeProjectModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.getElementById("closeModalButton")?.focus();
+    }
+  }, [isModalOpen]);
+
   return (
-    <div className="flex h-screen bg-background">
-      {/* Left Sidebar */}
-      <div className="w-64 border-r bg-card p-4 flex flex-col">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-primary">TaskMaster</h1>
-          <p className="text-sm text-muted-foreground">Organize your work</p>
-        </div>
+    <section id="projects" className="py-16 bg-background">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-2">Projects</h2>
+        <p className="text-muted-foreground text-center mb-8">
+          Explore my recent work and technical projects
+        </p>
 
-        <nav className="space-y-1 flex-1">
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#" className="flex items-center">
-              <svg
-                className="mr-2 h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+        <Tabs defaultValue="All" className="w-full mb-8">
+          <TabsList className="flex justify-center mb-8">
+            {categories.map((category) => (
+              <TabsTrigger
+                key={category}
+                value={category}
+                onClick={() => setActiveCategory(category)}
+                className="px-4 py-2"
               >
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg>
-              Dashboard
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#" className="flex items-center">
-              <svg
-                className="mr-2 h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                <path d="M9 14l2 2 4-4"></path>
-              </svg>
-              Tasks
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#" className="flex items-center">
-              <svg
-                className="mr-2 h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
-              Projects
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#" className="flex items-center">
-              <svg
-                className="mr-2 h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              </svg>
-              Bookmarks
-            </a>
-          </Button>
-        </nav>
+                {category}
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-        <div className="mt-auto pt-4 border-t">
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <Link href="/settings" className="flex items-center">
-              <svg
-                className="mr-2 h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-              </svg>
-              Settings
-            </Link>
-          </Button>
-          <div className="flex items-center mt-4 p-2 rounded-md bg-muted">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground mr-2">
-              <span>JD</span>
+          <TabsContent value={activeCategory} className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project) => (
+                <Card
+                  key={project.id}
+                  className="overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                  onClick={() => openProjectModal(project)}
+                >
+                  <AspectRatio ratio={16 / 9}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover w-full h-full"
+                      width={800}
+                      height={450}
+                      priority
+                    />
+                  </AspectRatio>
+                  <CardContent className="p-4">
+                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-3">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 3).map((tech, index) => (
+                        <Badge key={index} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <Badge variant="outline">
+                          +{project.technologies.length - 3}
+                        </Badge>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-            <div>
-              <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">john@example.com</p>
-            </div>
-          </div>
-        </div>
+          </TabsContent>
+        </Tabs>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <header className="border-b bg-card p-4 flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-semibold">My Tasks</h2>
-            <p className="text-sm text-muted-foreground">
-              Manage and organize your tasks
-            </p>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Button size="sm" className="flex items-center">
-              <Plus className="mr-1 h-4 w-4" />
-              Add Task
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              className="flex items-center"
-              asChild
+      {selectedProject && isModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-background w-full max-w-5xl max-h-[90vh] overflow-auto rounded-lg shadow-lg p-6 relative">
+            <button
+              id="closeModalButton"
+              onClick={closeProjectModal}
+              className="absolute top-4 right-4 text-gray-600 hover:text-black dark:hover:text-white text-xl"
+              aria-label="Close modal"
             >
-              <Link href="/auth">
-                <LogIn className="mr-1 h-4 w-4" />
-                Login
-              </Link>
-            </Button>
-          </div>
-        </header>
+              ✕
+            </button>
 
-        {/* Main Content Area */}
-        <main className="flex-1 overflow-auto p-6">
-          <Tabs defaultValue="board" className="w-full">
-            <div className="flex justify-between items-center mb-6">
-              <TabsList>
-                <TabsTrigger value="board">Task Board</TabsTrigger>
-                <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-              </TabsList>
-              <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm">
-                  <svg
-                    className="mr-1 h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                  </svg>
-                  Filter
-                </Button>
-                <Button variant="outline" size="sm">
-                  <svg
-                    className="mr-1 h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="4" y1="21" x2="4" y2="14"></line>
-                    <line x1="4" y1="10" x2="4" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="12"></line>
-                    <line x1="12" y1="8" x2="12" y2="3"></line>
-                    <line x1="20" y1="21" x2="20" y2="16"></line>
-                    <line x1="20" y1="12" x2="20" y2="3"></line>
-                    <line x1="1" y1="14" x2="7" y2="14"></line>
-                    <line x1="9" y1="8" x2="15" y2="8"></line>
-                    <line x1="17" y1="16" x2="23" y2="16"></line>
-                  </svg>
-                  Sort
-                </Button>
-              </div>
-            </div>
-
-            <TabsContent value="board" className="mt-0">
-              <TaskBoard />
-            </TabsContent>
-
-            <TabsContent value="dashboard" className="mt-0">
+            {selectedProject.title === "Task Management App" ? (
               <Dashboard />
-            </TabsContent>
-          </Tabs>
-        </main>
-      </div>
-    </div>
+            ) : (
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
+                
+                {/* Main Project Image */}
+                <div className="border rounded-lg overflow-hidden">
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    width={1200}
+                    height={675}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+
+                <div className="flex gap-4">
+                  {selectedProject.demoUrl && (
+                    <a
+                      href={selectedProject.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
+                    >
+                      {selectedProject.isDeployed ? 'Visit Live Website' : 'View Demo'}
+                    </a>
+                  )}
+                  {selectedProject.sourceUrl && (
+                    <a
+                      href={selectedProject.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80"
+                    >
+                      View Source Code
+                    </a>
+                  )}
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-lg">Project Details</h3>
+                    <p className="text-muted-foreground">{selectedProject.detailedDescription}</p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold">Technologies Used</h4>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {selectedProject.technologies.map((tech, index) => (
+                        <Badge key={index} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  {selectedProject.challenges && (
+                    <div>
+                      <h4 className="font-semibold">Challenges & Solutions</h4>
+                      <p className="text-muted-foreground">{selectedProject.challenges}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
   );
 }

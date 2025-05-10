@@ -164,17 +164,21 @@ const SkillsAboutContact = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p>
-                    I'm Carl Escalo, a passionate web developer with over 5
-                    years of experience building modern web applications. I
-                    specialize in React.js and the JavaScript ecosystem,
-                    creating responsive and user-friendly interfaces.
+                    I'm Carls Dale Escalo, i studied Computer Science and taken a
+                    job realated to IT, but my passion in web development led me to
+                    pursue a career in this field. I have experience in
+                    developing web applications using modern technologies like
+                    React, Next.js, and Node.js. I enjoy creating user-friendly
+                    interfaces and building robust backend systems that power
+                    them.
                   </p>
                   <p>
-                    Throughout my career, I've worked with startups and
-                    established companies to deliver high-quality web solutions
-                    that solve real business problems. I'm committed to writing
-                    clean, maintainable code and staying up-to-date with the
-                    latest industry trends and best practices.
+                    Throughout my career, I've worked with a company that made me 
+                    wear different hats Ive developed websites and purchased domains 
+                    for my previous companuy, and I have a strong understanding of the full 
+                    web development lifecycle. I thrive in collaborative
+                    environments and enjoy working with cross-functional teams to
+                    deliver high-quality products.
                   </p>
                   <div className="pt-4">
                     <Button
@@ -202,7 +206,7 @@ const SkillsAboutContact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold">
-                      Full Stack Web Development Certification
+                       Web Development Certification
                     </h4>
                     <p className="text-muted-foreground">Tech Academy, 2019</p>
                   </div>

@@ -1,4 +1,4 @@
-import AuthForm from "@/components/auth-form";
+import AuthForm from "../../components/auth-form";  // Corrected relative import
 
 export default function AuthPage() {
   return (

@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin"; // ✅ Import plugin
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   darkMode: ["class"],
@@ -107,17 +107,18 @@ const config: Config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    // ✅ Typed plugin to add animation-delay-* utilities
     plugin(function ({ addUtilities, theme }) {
       const delays = theme("animationDelay") as Record<string, string>;
       const utilities = Object.entries(delays).reduce(
         (acc, [key, value]) => {
-          acc[`.animation-delay-${key}`] = { animationDelay: value };
+          acc[`.animation-delay-${key}`] = {
+            animationDelay: value,
+          };
           return acc;
         },
         {} as Record<string, { animationDelay: string }>
       );
-      addUtilities(utilities, ["responsive"]);
+      addUtilities(utilities); // ✅ NO "responsive" array argument here
     }),
   ],
 };

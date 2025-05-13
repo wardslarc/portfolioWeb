@@ -4,7 +4,7 @@ import { Card, CardContent } from "../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Badge } from "../components/ui/badge";
 import { AspectRatio } from "../components/ui/aspect-ratio";
-import TaskAppPage from "@/components/taskmanagement/components/TaskBoard"; // ✅ updated import
+
 import Image from "next/image";
 
 interface Project {
@@ -39,19 +39,7 @@ export default function ProjectsSection() {
       challenges: "Buying a domain and hosting, setting up professional email and using GoDaddy's website builder to create a responsive site.",
       isDeployed: true
     },
-    {
-      id: "2",
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates",
-      category: "Web Apps",
-      image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&q=80",
-      technologies: ["NextJS", "Firebase", "Tailwind CSS"],
-      demoUrl: "https://example.com/taskapp",
-      sourceUrl: "https://github.com/carlescalo/taskapp",
-      detailedDescription: "A task management application for teams with real-time collaboration features.",
-      challenges: "Implementing real-time synchronization across multiple clients.",
-      isDeployed: false
-    },
+    
   ];
 
   const categories = ["All", "Web Apps", "Mobile", "UI/UX"];
@@ -144,7 +132,7 @@ export default function ProjectsSection() {
 
       {selectedProject && isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-background w-full max-w-5xl max-h-[90vh] overflow-auto rounded-lg shadow-lg p-6 relative">
+          <div className="bg-white dark:bg-background w-full max-w-6xl max-h-[90vh] overflow-auto rounded-lg shadow-lg p-6 relative">
             <button
               id="closeModalButton"
               onClick={closeProjectModal}
@@ -155,7 +143,62 @@ export default function ProjectsSection() {
             </button>
 
             {selectedProject.title === "Task Management App" ? (
-              <TaskAppPage /> // ✅ replaced <Dashboard />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div className="space-y-5">
+                  <h2 className="text-3xl font-bold text-primary">{selectedProject.title}</h2>
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    {selectedProject.detailedDescription}
+                  </p>
+
+                  {selectedProject.challenges && (
+                    <div>
+                      <h4 className="font-semibold text-lg">Challenges & Solutions</h4>
+                      <p className="text-muted-foreground mt-1">{selectedProject.challenges}</p>
+                    </div>
+                  )}
+
+                  <div>
+                    <h4 className="font-semibold text-lg">Technologies Used</h4>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {selectedProject.technologies.map((tech, index) => (
+                        <Badge key={index} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 mt-4">
+                    {selectedProject.demoUrl && (
+                      <a
+                        href={selectedProject.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition"
+                      >
+                        {selectedProject.isDeployed ? "Visit Live Website" : "View Demo"}
+                      </a>
+                    )}
+                    {selectedProject.sourceUrl && (
+                      <a
+                        href={selectedProject.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80 transition"
+                      >
+                        View Source Code
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <div className="border rounded-lg shadow-sm p-2 bg-muted overflow-hidden">
+                  <div className="h-[500px] overflow-auto rounded-md">
+                    <TaskAppPage />
+                  </div>
+                </div>
+              </div>
             ) : (
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
@@ -178,7 +221,7 @@ export default function ProjectsSection() {
                       rel="noopener noreferrer"
                       className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
                     >
-                      {selectedProject.isDeployed ? 'Visit Live Website' : 'View Demo'}
+                      {selectedProject.isDeployed ? "Visit Live Website" : "View Demo"}
                     </a>
                   )}
                   {selectedProject.sourceUrl && (

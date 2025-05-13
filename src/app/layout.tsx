@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Carls Escalo",
   description: "A modern full-stack starter template powered by Next.js",
+  icons: {
+    icon: "/images/cd2.png", // custom favicon from public folder
+  },
 };
 
 export default function RootLayout({

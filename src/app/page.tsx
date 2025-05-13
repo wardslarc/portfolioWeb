@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsAboutContact from "@/components/SkillsAboutContact";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -23,6 +24,10 @@ export default function Home() {
       {/* Skills, About, and Contact Sections */}
       <div id="skills">
         <SkillsAboutContact />
+      </div>
+      {/* Footer */}
+      <div id="footer">
+        <Footer />
       </div>
     </main>
   );

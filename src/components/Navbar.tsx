@@ -29,46 +29,31 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background",
-        isScrolled ? "shadow-md py-2" : "py-4",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-900 text-white animate-slide-down",
+        isScrolled ? "shadow-md py-2" : "py-4"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
-          <a href="#" className="text-xl font-bold text-primary">
-          Carls <span className="text-foreground">Escalo</span>
+          <a href="#" className="text-xl font-bold text-white">
+            Carls <span className="text-white">Escalo</span>
           </a>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <button
-            onClick={() => scrollToSection("hero")}
-            className="text-foreground hover:text-primary transition-colors"
-          >
-            Home
-          </button>
-          <button
-            onClick={() => scrollToSection("projects")}
-            className="text-foreground hover:text-primary transition-colors"
-          >
-            Projects
-          </button>
-          <button
-            onClick={() => scrollToSection("skills")}
-            className="text-foreground hover:text-primary transition-colors"
-          >
-            Skills
-          </button>
-          <button
-            onClick={() => scrollToSection("about")}
-            className="text-foreground hover:text-primary transition-colors"
-          >
-            About
-          </button>
+        <nav className="hidden md:flex items-center space-x-4">
+          {["hero", "projects", "skills", "about"].map((section, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToSection(section)}
+              className="text-white px-4 py-2 rounded-md transition-all duration-200 transform hover:scale-105 hover:text-black hover:bg-white"
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </button>
+          ))}
           <Button
             onClick={() => scrollToSection("contact")}
-            className="ml-2"
+            className="ml-2 bg-white text-black hover:scale-105 transition-all duration-200"
             size="sm"
           >
             Contact Me
@@ -79,7 +64,7 @@ const Navbar = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="md:hidden text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <Menu className="h-6 w-6" />
@@ -88,35 +73,20 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background shadow-lg py-4 px-4 absolute top-full left-0 right-0">
-          <nav className="flex flex-col space-y-4">
-            <button
-              onClick={() => scrollToSection("hero")}
-              className="text-foreground hover:text-primary transition-colors py-2"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="text-foreground hover:text-primary transition-colors py-2"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => scrollToSection("skills")}
-              className="text-foreground hover:text-primary transition-colors py-2"
-            >
-              Skills
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-foreground hover:text-primary transition-colors py-2"
-            >
-              About
-            </button>
+        <div className="md:hidden bg-gray-900 text-white shadow-lg py-4 px-4 absolute top-full left-0 right-0 animate-slide-down">
+          <nav className="flex flex-col space-y-2">
+            {["hero", "projects", "skills", "about"].map((section, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToSection(section)}
+                className="text-white text-left w-full px-4 py-2 rounded-md transition-all duration-200 transform hover:scale-105 hover:text-black hover:bg-white"
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </button>
+            ))}
             <Button
               onClick={() => scrollToSection("contact")}
-              className="w-full"
+              className="w-full bg-white text-black hover:scale-105 transition-all duration-200"
               size="sm"
             >
               Contact Me

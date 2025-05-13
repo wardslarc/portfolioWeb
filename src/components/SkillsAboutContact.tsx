@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -34,8 +33,17 @@ interface SocialLinkProps {
   icon: React.ReactNode;
 }
 
+// ✅ Inline Progress component that visually reflects percentage
+const Progress = ({ value }: { value: number }) => (
+  <div className="w-full bg-gray-200 rounded h-2 overflow-hidden">
+    <div
+      className="bg-blue-600 h-full transition-all duration-300 ease-in-out"
+      style={{ width: `${value}%` }}
+    />
+  </div>
+);
+
 const SkillsAboutContact = () => {
-  // Default skills data with expertise levels
   const skills: SkillProps[] = [
     { name: "React", level: 60, category: "Frontend" },
     { name: "JavaScript", level: 70, category: "Frontend" },
@@ -53,7 +61,6 @@ const SkillsAboutContact = () => {
     { name: "Figma", level: 30, category: "Tools" },
   ];
 
-  // Social media links
   const socialLinks: SocialLinkProps[] = [
     {
       platform: "GitHub",
@@ -77,16 +84,13 @@ const SkillsAboutContact = () => {
     },
   ];
 
-  // Group skills by category
   const skillsByCategory = skills.reduce<Record<string, SkillProps[]>>(
     (acc, skill) => {
-      if (!acc[skill.category]) {
-        acc[skill.category] = [];
-      }
+      if (!acc[skill.category]) acc[skill.category] = [];
       acc[skill.category].push(skill);
       return acc;
     },
-    {},
+    {}
   );
 
   return (
@@ -137,18 +141,18 @@ const SkillsAboutContact = () => {
                               {skill.level}%
                             </span>
                           </div>
-                          <Progress value={skill.level} className="h-2" />
+                          <Progress value={skill.level} />
                         </div>
                       ))}
                     </CardContent>
                   </Card>
-                ),
+                )
               )}
             </div>
           </TabsContent>
 
           {/* About Section */}
-          <TabsContent id="about" value="about" className="space-y-8">
+          <TabsContent value="about" className="space-y-8">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold mb-4">About Me</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -164,8 +168,8 @@ const SkillsAboutContact = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p>
-                    I'm Carls Dale Escalo, i studied Computer Science and taken a
-                    job realated to IT, but my passion in web development led me to
+                    I'm Carls Dale Escalo. I studied Computer Science and took a
+                    job related to IT, but my passion for web development led me to
                     pursue a career in this field. I have experience in
                     developing web applications using modern technologies like
                     React, Next.js, and Node.js. I enjoy creating user-friendly
@@ -174,18 +178,17 @@ const SkillsAboutContact = () => {
                   </p>
                   <p>
                     Throughout my career, I've worked with a company that made me 
-                    wear different hats Ive developed websites and purchased domains 
-                    for my previous companuy, and I have a strong understanding of the full 
+                    wear different hats. I've developed websites, purchased domains 
+                    for my previous company, and have a strong understanding of the full 
                     web development lifecycle. I thrive in collaborative
                     environments and enjoy working with cross-functional teams to
                     deliver high-quality products.
                   </p>
                   <div className="pt-4">
-                    <Button
-                      variant="outline"
-                      className="flex items-center gap-2"
-                    >
-                      <Download className="h-4 w-4" /> Download Resume
+                    <Button variant="outline" className="flex items-center gap-2" asChild>
+                      <a href="/resume.pdf" download>
+                        <Download className="h-4 w-4" /> Download Resume
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
@@ -206,7 +209,7 @@ const SkillsAboutContact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold">
-                       Web Development Certification
+                      Web Development Certification
                     </h4>
                     <p className="text-muted-foreground">Tech Academy, 2019</p>
                   </div>
@@ -296,20 +299,13 @@ const SkillsAboutContact = () => {
                       <label htmlFor="subject" className="text-sm font-medium">
                         Subject
                       </label>
-                      <Input
-                        id="subject"
-                        placeholder="What is this regarding?"
-                      />
+                      <Input id="subject" placeholder="What is this regarding?" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-medium">
                         Message
                       </label>
-                      <Textarea
-                        id="message"
-                        placeholder="Your message"
-                        rows={5}
-                      />
+                      <Textarea id="message" placeholder="Your message" rows={5} />
                     </div>
                     <Button type="submit" className="w-full sm:w-auto">
                       Send Message

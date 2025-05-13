@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -8,7 +8,6 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -67,14 +66,61 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "pop-up": {
+          "0%": { transform: "scale(0)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "slide-up": {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "slide-down": {
+          "0%": { transform: "translateY(-100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pop-up": "pop-up 0.6s ease-out",
+        "slide-up": "slide-up 1s ease-out forwards", // ✅ updated with `forwards`
+        "fade-in": "fade-in 1s ease-out",
+        "slide-down": "slide-down 0.5s ease-out",
+      },
+      animationDelay: {
+        0: "0ms",
+        100: "100ms",
+        200: "200ms",
+        300: "300ms",
+        400: "400ms",
+        500: "500ms",
+        600: "600ms",
+        700: "700ms",
+        800: "800ms",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+  plugins: [
+    require("tailwindcss-animate"),
+    // Plugin to add `animation-delay-*` utilities
+    function ({ addUtilities, theme }) {
+      const delays = theme("animationDelay") as Record<string, string>;
+      const utilities = Object.entries(delays).reduce(
+        (acc, [key, value]) => {
+          acc[`.animation-delay-${key}`] = {
+            animationDelay: value,
+          };
+          return acc;
+        },
+        {} as Record<string, { animationDelay: string }>
+      );
+      addUtilities(utilities, ["responsive"]);
+    },
+  ],
+};
 
 export default config;

@@ -104,14 +104,14 @@ export default function ProjectsSection() {
               {filteredProjects.map((project) => (
                 <Card
                   key={project.id}
-                  className="overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                  className="overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
                   onClick={() => openProjectModal(project)}
                 >
                   <AspectRatio ratio={16 / 9}>
                     <Image
                       src={project.image}
                       alt={project.title}
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-full transition-transform duration-300 ease-in-out transform hover:scale-110"
                       width={800}
                       height={450}
                       priority

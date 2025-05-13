@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin"; // ✅ Import plugin
 
 const config: Config = {
   darkMode: ["class"],
@@ -87,7 +88,7 @@ const config: Config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pop-up": "pop-up 0.6s ease-out",
-        "slide-up": "slide-up 1s ease-out forwards", // ✅ updated with `forwards`
+        "slide-up": "slide-up 1s ease-out forwards",
         "fade-in": "fade-in 1s ease-out",
         "slide-down": "slide-down 0.5s ease-out",
       },
@@ -106,20 +107,18 @@ const config: Config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    // Plugin to add `animation-delay-*` utilities
-    function ({ addUtilities, theme }) {
+    // ✅ Typed plugin to add animation-delay-* utilities
+    plugin(function ({ addUtilities, theme }) {
       const delays = theme("animationDelay") as Record<string, string>;
       const utilities = Object.entries(delays).reduce(
         (acc, [key, value]) => {
-          acc[`.animation-delay-${key}`] = {
-            animationDelay: value,
-          };
+          acc[`.animation-delay-${key}`] = { animationDelay: value };
           return acc;
         },
         {} as Record<string, { animationDelay: string }>
       );
       addUtilities(utilities, ["responsive"]);
-    },
+    }),
   ],
 };
 

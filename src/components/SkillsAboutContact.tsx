@@ -46,18 +46,18 @@ const Progress = ({ value }: { value: number }) => (
 const SkillsAboutContact = () => {
   const skills: SkillProps[] = [
     { name: "React", level: 60, category: "Frontend" },
-    { name: "JavaScript", level: 70, category: "Frontend" },
-    { name: "TypeScript", level: 20, category: "Frontend" },
+    { name: "JavaScript", level: 50, category: "Frontend" },
+    { name: "TypeScript", level: 60, category: "Frontend" },
     { name: "HTML/CSS", level: 95, category: "Frontend" },
     { name: "Tailwind CSS", level: 60, category: "Frontend" },
-    { name: "Next.js", level: 80, category: "Frontend" },
+    { name: "Next.js", level: 65, category: "Frontend" },
     { name: "Node.js", level: 75, category: "Backend" },
-    { name: "Express", level: 70, category: "Backend" },
+    { name: "Express", level: 30, category: "Backend" },
     { name: "MongoDB", level: 65, category: "Backend" },
     { name: "PostgreSQL", level: 30, category: "Backend" },
-    { name: "Git", level: 30, category: "Tools" },
+    { name: "Git", level: 60, category: "Tools" },
     { name: "Docker", level: 20, category: "Tools" },
-    { name: "AWS", level: 70, category: "Tools" },
+    { name: "AWS", level: 50, category: "Tools" },
     { name: "Figma", level: 30, category: "Tools" },
   ];
 

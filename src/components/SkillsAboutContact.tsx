@@ -64,22 +64,22 @@ const SkillsAboutContact = () => {
   const socialLinks: SocialLinkProps[] = [
     {
       platform: "GitHub",
-      url: "https://github.com/carlescalo",
+      url: "https://github.com/wardslarc",
       icon: <Github className="h-5 w-5" />,
     },
     {
       platform: "LinkedIn",
-      url: "https://linkedin.com/in/carlescalo",
+      url: "https://www.linkedin.com/in/carls-dale-escalo-797701366?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       icon: <Linkedin className="h-5 w-5" />,
     },
     {
       platform: "Twitter",
-      url: "https://twitter.com/carlescalo",
+      url: "https://twitter.com/daleonigiri",
       icon: <Twitter className="h-5 w-5" />,
     },
     {
       platform: "Email",
-      url: "mailto:carl@example.com",
+      url: "mailto:carlsdaleescalo@gmail.com",
       icon: <Mail className="h-5 w-5" />,
     },
   ];
@@ -196,7 +196,7 @@ const SkillsAboutContact = () => {
 
               <Card className="shadow-md">
                 <CardHeader>
-                  <CardTitle>Education & Certifications</CardTitle>
+                  <CardTitle>Education</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
@@ -204,25 +204,7 @@ const SkillsAboutContact = () => {
                       Bachelor of Science in Computer Science
                     </h4>
                     <p className="text-muted-foreground">
-                      University of Technology, 2018
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">
-                      Web Development Certification
-                    </h4>
-                    <p className="text-muted-foreground">Tech Academy, 2019</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">AWS Certified Developer</h4>
-                    <p className="text-muted-foreground">
-                      Amazon Web Services, 2021
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">React Advanced Patterns</h4>
-                    <p className="text-muted-foreground">
-                      Frontend Masters, 2022
+                      University of Makati, 2023
                     </p>
                   </div>
                 </CardContent>
@@ -240,10 +222,9 @@ const SkillsAboutContact = () => {
                     business fascinated me, and I've been hooked ever since.
                   </p>
                   <p className="mb-4">
-                    Outside of coding, I enjoy hiking, photography, and
-                    exploring new coffee shops. I believe that these diverse
-                    interests help fuel my creativity and problem-solving
-                    abilities as a developer.
+                    Outside of coding, I enjoy drawing and playing games, ive actually mold my life to pursue drawing but 
+                    I realized that building programs is my true passion. I love learning new frameworks and libraries 
+                    in building websites.
                   </p>
                   <p>
                     I'm passionate about creating accessible web experiences and
@@ -351,7 +332,7 @@ const SkillsAboutContact = () => {
 
                     <h4 className="font-semibold mb-2">Location</h4>
                     <p className="text-muted-foreground">
-                      Based in San Francisco, CA — Available for remote work
+                      Based in General Trias, Cavite Philippines— Available for remote work
                       worldwide
                     </p>
                   </div>

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import {
   ArrowDown,
@@ -12,19 +14,36 @@ import { Badge } from "./ui/badge";
 
 interface HeroSectionProps {
   name?: string;
-  title?: string;
   description?: string;
   imageUrl?: string;
   resumeUrl?: string;
 }
 
+const titles = ["Web Developer", "Illustrator", "Digital Artist"];
+
 const HeroSection = ({
   name = "Carls Escalo",
-  title = "Web Developer",
-  description = "Passionate about creating beautiful, responsive, and user-friendly web applications with modern technologies.",
+  description =
+    "Passionate about creating beautiful, responsive, and user-friendly web applications with modern technologies.",
   imageUrl = "/images/profile.png",
   resumeUrl = "#",
 }: HeroSectionProps) => {
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // start fade out
+
+      setTimeout(() => {
+        setTitleIndex((prev) => (prev + 1) % titles.length); // update title
+        setFade(true); // fade in
+      }, 500); // fade out duration
+    }, 3000); // total duration per title
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center px-4 py-20 bg-background">
       {/* Background gradient effect */}
@@ -44,8 +63,12 @@ const HeroSection = ({
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight animate-slide-up">
                 Hi, I'm <span className="text-primary">{name}</span>
               </h1>
-              <h2 className="text-2xl md:text-3xl font-medium text-muted-foreground animate-slide-up">
-                {title}
+              <h2
+                className={`text-2xl md:text-3xl font-medium text-muted-foreground transition-opacity duration-500 ${
+                  fade ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                {titles[titleIndex]}
               </h2>
             </div>
 
@@ -58,8 +81,11 @@ const HeroSection = ({
               <Button
                 size="lg"
                 className="transition-transform duration-300 ease-in-out transform hover:scale-105"
+                asChild
               >
-                View My Work <ArrowDown className="ml-2 h-4 w-4" />
+                <a href="#projects">
+                  View My Work <ArrowDown className="ml-2 h-4 w-4" />
+                </a>
               </Button>
               <Button
                 variant="outline"
@@ -82,17 +108,17 @@ const HeroSection = ({
                   label: "GitHub",
                 },
                 {
-                  href: "https://linkedin.com",
+                  href: "https://www.linkedin.com/in/carls-dale-escalo-797701366/",
                   icon: <Linkedin className="h-6 w-6" />,
                   label: "LinkedIn",
                 },
                 {
-                  href: "https://twitter.com",
+                  href: "https://twitter.com/daleonigiri",
                   icon: <Twitter className="h-6 w-6" />,
                   label: "Twitter",
                 },
                 {
-                  href: "mailto:carlsdaleescalo@gmail.com",
+                  href: "mailto:admin@carlsdaleescalo.com",
                   icon: <Mail className="h-6 w-6" />,
                   label: "Email",
                 },

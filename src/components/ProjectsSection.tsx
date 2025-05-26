@@ -39,6 +39,51 @@ export default function ProjectsSection() {
       challenges: "Buying a domain and hosting, setting up professional email and using GoDaddy's website builder to create a responsive site.",
       isDeployed: true
     },
+    {
+      id: "2",
+      title: "Portfolio Website for Drawing",
+      description: "A portfolio website showcasing my digital drawings and artwork.",
+      category: "Web Apps",
+      image: "/images/artportfolio.png", // replace with your actual image path
+      technologies: ["React", "Next.js", "Tailwind CSS", "Firebase"],
+      demoUrl: "https://yourdrawingportfolio.com", // replace with actual URL if deployed
+      sourceUrl: "https://github.com/yourusername/drawing-portfolio", // replace with actual repo URL
+      detailedDescription:
+        "This portfolio website features galleries of my digital illustrations and drawings, categorized and filterable by style and medium. It includes a responsive design with smooth animations and modal views for artwork details.",
+      challenges:
+        "Implementing smooth image loading, responsive gallery layout, and optimizing performance for fast load times on various devices.",
+      isDeployed: true,
+    },
+    {
+      id: "3",
+      title: "Admin Website for Drawing Portfolio",
+      description: "A portfolio website showcasing my digital drawings and artwork.",
+      category: "Web Apps",
+      image: "/images/artadmin.png", // replace with your actual image path
+      technologies: ["React", "Next.js", "Tailwind CSS", "Firebase"],
+      demoUrl: "https://yourdrawingportfolio.com", // replace with actual URL if deployed
+      sourceUrl: "https://github.com/yourusername/drawing-portfolio", // replace with actual repo URL
+      detailedDescription:
+        "This portfolio website features galleries of my digital illustrations and drawings, categorized and filterable by style and medium. It includes a responsive design with smooth animations and modal views for artwork details.",
+      challenges:
+        "Implementing smooth image loading, responsive gallery layout, and optimizing performance for fast load times on various devices.",
+      isDeployed: true,
+    },
+    {
+      id: "4",
+      title: "Web Developer Portfolio",
+      description: "A portfolio website showcasing my projects for website development and web design.",
+      category: "Web Apps",
+      image: "/images/personalweb.png", // replace with your actual image path
+      technologies: ["React", "Next.js", "Tailwind CSS", "Firebase", "TypeScript", "Node.js", "Godaddy", "Vercel"],
+      demoUrl: "https://carlsdaleescalo.com", // replace with actual URL if deployed
+      sourceUrl: "https://github.com/wardslarc/portfolioWeb", // replace with actual repo URL
+      detailedDescription:
+        "This portfolio website features galleries of my digital illustrations and drawings, categorized and filterable by style and medium. It includes a responsive design with smooth animations and modal views for artwork details.",
+      challenges:
+        "Deployment of the website on Vercel, then purchasing a domain and hosting on GoDaddy, and setting up professional email accounts.",
+      isDeployed: true,
+    },
   ];
 
   const categories = ["All", "Web Apps", "Mobile", "UI/UX"];

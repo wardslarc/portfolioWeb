@@ -51,14 +51,13 @@ const SkillsAboutContact = () => {
     { name: "HTML/CSS", level: 95, category: "Frontend" },
     { name: "Tailwind CSS", level: 60, category: "Frontend" },
     { name: "Next.js", level: 65, category: "Frontend" },
-    { name: "Node.js", level: 75, category: "Backend" },
-    { name: "Express", level: 30, category: "Backend" },
-    { name: "MongoDB", level: 65, category: "Backend" },
-    { name: "PostgreSQL", level: 30, category: "Backend" },
-    { name: "Git", level: 60, category: "Tools" },
-    { name: "Docker", level: 20, category: "Tools" },
-    { name: "AWS", level: 50, category: "Tools" },
-    { name: "Figma", level: 30, category: "Tools" },
+    { name: "Node.js", level: 55, category: "Backend" },
+    { name: "MongoDB", level: 30, category: "Backend" },
+    { name: "Firebase", level: 80, category: "Backend" },
+    { name: "Git", level: 70, category: "Tools" },
+    { name: "Go Daddy", level: 90, category: "Tools" },
+    { name: "AWS", level: 30, category: "Tools" },
+    { name: "Vercel", level: 70, category: "Tools" },
   ];
 
   const socialLinks: SocialLinkProps[] = [

@@ -46,8 +46,8 @@ export default function ProjectsSection() {
       category: "Web Apps",
       image: "/images/artportfolio.png", // replace with your actual image path
       technologies: ["React", "Next.js", "Tailwind CSS", "Firebase"],
-      demoUrl: "https://yourdrawingportfolio.com", // replace with actual URL if deployed
-      sourceUrl: "https://github.com/yourusername/drawing-portfolio", // replace with actual repo URL
+      demoUrl: "https://carlsdaleescalo-ochre.vercel.app/", // replace with actual URL if deployed
+      sourceUrl: "https://github.com/wardslarc/portfolioWeb", // replace with actual repo URL
       detailedDescription:
         "This portfolio website features galleries of my digital illustrations and drawings, categorized and filterable by style and medium. It includes a responsive design with smooth animations and modal views for artwork details.",
       challenges:
@@ -61,8 +61,8 @@ export default function ProjectsSection() {
       category: "Web Apps",
       image: "/images/artadmin.png", // replace with your actual image path
       technologies: ["React", "Next.js", "Tailwind CSS", "Firebase"],
-      demoUrl: "https://yourdrawingportfolio.com", // replace with actual URL if deployed
-      sourceUrl: "https://github.com/yourusername/drawing-portfolio", // replace with actual repo URL
+      demoUrl: "https://carls-escalo-web-admin.vercel.app/", // replace with actual URL if deployed
+      sourceUrl: "https://github.com/wardslarc/art-portfolio-web-admin", // replace with actual repo URL
       detailedDescription:
         "This portfolio website features galleries of my digital illustrations and drawings, categorized and filterable by style and medium. It includes a responsive design with smooth animations and modal views for artwork details.",
       challenges:

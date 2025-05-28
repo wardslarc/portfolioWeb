@@ -26,32 +26,39 @@ const HeroSection = ({
   description =
     "Passionate about creating beautiful, responsive, and user-friendly web applications with modern technologies.",
   imageUrl = "/images/profile.png",
-  resumeUrl = "#",
+  resumeUrl = "https://drive.google.com/file/d/1qkup_4hiCf1spLvhDQxHq-qAQjJ3jAYJ/view?usp=sharing",
 }: HeroSectionProps) => {
   const [titleIndex, setTitleIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
+  // Convert Google Drive link to direct download link
+  const getDirectDownloadLink = (url: string) => {
+    const match = url.match(/\/d\/([^/]+)\//);
+    if (!match) return url;
+    return `https://drive.google.com/uc?export=download&id=${match[1]}`;
+  };
+
+  const directDownloadUrl = getDirectDownloadLink(resumeUrl);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); // start fade out
-
+      setFade(false);
       setTimeout(() => {
-        setTitleIndex((prev) => (prev + 1) % titles.length); // update title
-        setFade(true); // fade in
-      }, 500); // fade out duration
-    }, 3000); // total duration per title
+        setTitleIndex((prev) => (prev + 1) % titles.length);
+        setFade(true);
+      }, 500);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center px-4 py-20 bg-background">
-      {/* Background gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-background z-0"></div>
 
       <div className="container mx-auto max-w-6xl z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* Left content - Text and CTA */}
+          {/* Left content */}
           <div className="flex-1 space-y-6 text-center md:text-left">
             <div className="space-y-2">
               <Badge
@@ -76,7 +83,6 @@ const HeroSection = ({
               {description}
             </p>
 
-            {/* Buttons with slide-up animation */}
             <div className="flex flex-wrap gap-4 justify-center md:justify-start opacity-0 animate-slide-up animation-delay-200">
               <Button
                 size="lg"
@@ -87,19 +93,23 @@ const HeroSection = ({
                   View My Work <ArrowDown className="ml-2 h-4 w-4" />
                 </a>
               </Button>
+
               <Button
                 variant="outline"
                 size="lg"
                 asChild
                 className="transition-transform duration-300 ease-in-out transform hover:scale-105"
               >
-                <a href={resumeUrl} download>
+                <a
+                  href={directDownloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Download CV <Download className="ml-2 h-4 w-4" />
                 </a>
               </Button>
             </div>
 
-            {/* Social icons with slide-up animation */}
             <div className="flex gap-4 justify-center md:justify-start pt-4 opacity-0 animate-slide-up animation-delay-300">
               {[
                 {
@@ -137,7 +147,7 @@ const HeroSection = ({
             </div>
           </div>
 
-          {/* Right content - Profile Image */}
+          {/* Right content */}
           <div className="flex-1 flex justify-center md:justify-end">
             <div className="relative">
               <div className="relative h-[300px] w-[300px] sm:h-[400px] sm:w-[400px] lg:h-[450px] lg:w-[450px] overflow-hidden rounded-full border-4 border-background shadow-xl">
